@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cecilia</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch((e) => console.warn('sw', e));
+  </script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+  <!-- Shared state the modules fill in. Defined first so the sketch never waits on a CDN. -->
+  <script>
+    window.Speech = { status: 'loading whisper…', recording: false, queue: [], start() {}, stop() {} };
+    window.Hands  = { status: 'loading hand tracking…', ready: false };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
+  <script type="module" src="speech.js"></script>
+  <script type="module" src="hands.js"></script>
+  <script src="sound.js"></script>
+  <script src="sketch.js"></script>
+</head>
+<body></body>
+</html>
